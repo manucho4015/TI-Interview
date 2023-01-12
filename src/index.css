@@ -1,13 +1,118 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 
+====== 
+Google Font (Sofia Sans)
+======
+*/
+@import url('https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Dosis:wght@300&display=swap');
+
+/* 
+====== 
+Variables 
+======
+*/
+:root {
+  --orange: #E2B659;
+  --cream: #FFEECA;
+  --brown: #9D8453;
+  --green: #005B4C;
+  --white: rgb(221, 224, 225);
+  --charcoal: #36454f;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* 
+====== 
+Global Styles 
+======
+*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'BhuTuka Expanded One', cursive;
+    font-family: 'Dosis', sans-serif;
+}
+
+
+/* 
+====== 
+Home Page
+======
+*/
+.home-page {
+  height: 100vh;
+  background-color: var(--cream);
+}
+.actions {
+  display: inline-block;
+  width: 100vw;
+  margin-top: 5rem;
+  height: 3rem;
+  text-align: center;
+}
+.search-name {
+  height: 3rem;
+  border-radius: 2rem;
+  border: .1rem var(--orange) solid;
+  font-size: 1rem;
+  padding-left: .5rem;
+  color: var(--brown);
+}
+.search-occupation {
+  height: 3rem;
+  border-radius: 2rem;
+  border: .1rem var(--orange) solid;
+  font-size: 1rem;
+  padding-left: .5rem;
+  margin-left: 1rem;
+  color: var(--brown);
+}
+.search-name:focus,
+.search-occupation:focus{
+  outline: none !important;
+  border: .1rem var(--orange) solid;
+}
+.export-pdf {
+  height: 3rem;
+  width: 8rem;
+  border: none;
+  margin-left: 2rem;
+  border-radius: 1rem;
+  background-color: var(--orange);
+  cursor: pointer;
+  padding: .5rem;
+  font-weight: 1rem;
+  box-shadow: -3px 2px 13px 0px rgba(79, 74, 79, 1);
+}
+.counter {
+  margin-top: 2rem;
+  text-align: center;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 4rem 0 0 5rem;
+}
+.card {
+  position: relative;
+  height: 5rem;
+  width: 25rem;
+  background-color: var(--orange);
+  margin-top: 1rem;
+  border-radius: .5rem;
+  border: .1rem var(--brown) solid;
+}
+.card > h3,
+ .card>p {
+  text-transform: capitalize;
+  margin-left: 2rem;
+  color: var(--charcoal);
+}
+.edit-icon {
+  position: absolute;
+  right: 2rem;
+  top: 1.5rem;
+  cursor: pointer;
+}
+.card > h3 {
+  margin-top: 1rem;
 }
