@@ -2,21 +2,36 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import EditProfessional from "./pages/EditProfessional";
+import Modal from "./components/Modal";
 
-// redux setup
-import { configureStore } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { calculateTotal, getProfessionals } from "./features/home/homeSlice";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  const { professionalsArray } = useSelector((store) => store.home);
+  const { submitted } = useSelector((store) => store.form);
+  const { isOpen } = useSelector((store) => store.modal);
+
+  useEffect(() => {
+    dispatch(calculateTotal());
+  }, [professionalsArray]);
+
+  useEffect(() => {
+    dispatch(getProfessionals());
+  }, [submitted]);
+
   return (
-    <div className="App">
+    <main className="App">
+      {isOpen && <Modal />}
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/edit" element={<EditProfessional />} />
+          <Route path="/edit/:id" element={<EditProfessional />} />
         </Routes>
       </Router>
-    </div>
+    </main>
   );
 }
 
