@@ -1,13 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
+// redux
+import { useDispatch } from "react-redux";
+
+// material UI
 import EditIcon from "@mui/icons-material/Edit";
 
-const Card = () => {
+// action creators
+import { setId } from "../features/form/formSlice";
+
+const Card = ({ name, occupation, bio, _id }) => {
+  const dispatch = useDispatch();
   return (
     <article className="card">
-      <h3>manucho</h3>
-      <p>frontend engineer</p>
-      <EditIcon className="edit-icon" />
+      <h3>{name}</h3>
+      <h4>{occupation}</h4>
+      <Link
+        to={`/edit/${_id}`}
+        className="edit-link"
+        onClick={() => dispatch(setId(_id))}
+      >
+        <EditIcon className="edit-icon" />
+      </Link>
     </article>
   );
 };
