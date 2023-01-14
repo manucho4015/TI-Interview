@@ -3,7 +3,7 @@ import React from "react";
 // redux
 import { useSelector } from "react-redux";
 
-// import components
+// components
 import Card from "../components/Card";
 import ActionBar from "../components/ActionBar";
 

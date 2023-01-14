@@ -1,6 +1,6 @@
 import React from "react";
 
-// import component
+// component
 import Form from "../components/Form";
 
 const EditProfessional = () => {
