@@ -1,9 +1,11 @@
 import React from "react";
 
+import Form from "../components/Form";
+
 const EditProfessional = () => {
   return (
     <section className="edit-page">
-      <h1>Edit</h1>
+      <Form />
     </section>
   );
 };
