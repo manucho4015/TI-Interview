@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my implementation of a ReactJS application as a solution
+to the technical inteview given to me by Touch Inspiration for the role of ReactJS Developer
 
-## Available Scripts
+## Disclaimer
 
-In the project directory, you can run:
+I used Redux Toolkit instead of native Redux. This is because Redux Toolkit is an upgraded version of Redux with much more room for flexibility as well as other features.
 
-### `npm start`
+## Extra Packages Installed
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. jspdf && => create pdf files
+2. jspdf-autotable => create tables within pdf files
+3. axios => fetch data from API
+4. redux toolkit => state management
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Components
 
-### `npm test`
+1. Card => Display information fetched from API
+2. Form => Submit information for update through API
+3. Action => Enable user search by name or by occupation as well as export to PDF
+4. Modal => Input preferred pdf filename and download
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Pages
 
-### `npm run build`
+1. Home => Display Card Components
+2. EditProfessional => Holds Form Component
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Redux
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Store instantiated at src/store.js
+2. The three main segments connected to state management: - homeSlice => src/features/home/homeSlice.js - formSlice => src/features/form/formSlice.js - modalSlice => src/features/modal/modalSlice.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The state, reducers, actions and action creators are all handled within each independent segment
 
-### `npm run eject`
+#### Connection to API
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. GET endpoint is handled in src/features/home/homeSlice.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+export const getProfessionals = createAsyncThunk(
+  "home/getProfessionals",
+  async () => {
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          "x-apikey": "63be7360969f06502871ad7f",
+        },
+      });
+      localStorage.setItem("data", JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {}
+  }
+);
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. PATCH endpoint is handled in src/features/form/formSlice.js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```js
+export const editProfessional = createAsyncThunk(
+  "form/editProfessional",
+  async (name, thunkAPI) => {
+    try {
+      const { form } = thunkAPI.getState();
+      const { professional, id } = form;
+      const response = await axios.post(`${url}/${id}`, professional, {
+        headers: {
+          "x-apikey": "63be7360969f06502871ad7f",
+        },
+      });
+      return response.data;
+    } catch (error) {}
+  }
+);
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Thank you for reviewing my application. Hope you enjoyed it :)
