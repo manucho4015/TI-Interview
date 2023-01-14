@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = "https://touchinspiration-0ada.restdb.io/rest/sample";
-
+// redux state
 const initialState = {
   professionalsArray: [],
   total: 0,
@@ -12,6 +11,9 @@ const initialState = {
   id: "",
   searchArray: [],
 };
+
+// connect to API
+const url = "https://touchinspiration-0ada.restdb.io/rest/sample";
 
 export const getProfessionals = createAsyncThunk(
   "home/getProfessionals",
@@ -28,6 +30,7 @@ export const getProfessionals = createAsyncThunk(
   }
 );
 
+// redux actions, action creators & reducer
 const homeSlice = createSlice({
   name: "home",
   initialState,

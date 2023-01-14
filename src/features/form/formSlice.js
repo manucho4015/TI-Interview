@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = "https://touchinspiration-0ada.restdb.io/rest/sample";
-
+// redux state
 const initialState = {
   isLoading: true,
   submitted: false,
   id: "",
   professional: {},
 };
+
+// connect to API
+const url = "https://touchinspiration-0ada.restdb.io/rest/sample";
 
 export const editProfessional = createAsyncThunk(
   "form/editProfessional",
@@ -26,6 +28,7 @@ export const editProfessional = createAsyncThunk(
   }
 );
 
+// redux actions, action creators & reducer
 const formSlice = createSlice({
   name: "form",
   initialState,
