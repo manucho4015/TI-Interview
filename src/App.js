@@ -16,11 +16,11 @@ function App() {
 
   useEffect(() => {
     dispatch(calculateTotal());
-  }, [professionalsArray]);
+  }, [professionalsArray]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     dispatch(getProfessionals());
-  }, [submitted]);
+  }, [submitted]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <main className="App">
