@@ -1,10 +1,11 @@
 import React from "react";
 
-import Card from "../components/Card";
-import ActionBar from "../components/ActionBar";
+// redux
 import { useSelector } from "react-redux";
 
-// import {fetchProfessionals} from '../../api/GET'
+// import components
+import Card from "../components/Card";
+import ActionBar from "../components/ActionBar";
 
 const Home = () => {
   const { total, professionalsArray } = useSelector((store) => store.home);
