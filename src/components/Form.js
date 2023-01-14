@@ -21,11 +21,11 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(editProfessional("edit"));
-  };
+  }; // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     dispatch(filterProfessional());
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="form">
       {submitted && <Navigate to="/" />}

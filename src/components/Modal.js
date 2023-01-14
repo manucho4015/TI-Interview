@@ -22,6 +22,7 @@ const Modal = () => {
       tempArray.push(professional.occupation);
       tempArray.push(professional.bio);
       exportArray.push(tempArray);
+      return null;
     });
     const doc = new jsPDF();
     autoTable(doc, {

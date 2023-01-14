@@ -6,7 +6,12 @@ const initialState = {
   isLoading: true,
   submitted: false,
   id: "",
-  professional: {},
+  professional: {
+    name: "",
+    email: "",
+    occupation: "",
+    bio: "",
+  },
 };
 
 // connect to API
@@ -40,6 +45,7 @@ const formSlice = createSlice({
         if (item._id === state.id) {
           professional = item;
         }
+        return null;
       });
       state.professional = professional;
     },
